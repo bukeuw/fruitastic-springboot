@@ -10,4 +10,9 @@ class FruitasticRestApplicationTests {
 	fun contextLoads() {
 	}
 
+	@Test
+	fun testCreateFruit() {
+		//
+	}
+
 }
