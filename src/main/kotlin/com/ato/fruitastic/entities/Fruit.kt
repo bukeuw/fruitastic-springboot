@@ -7,6 +7,7 @@ import javax.persistence.*
 import javax.validation.constraints.NotEmpty
 
 @Entity
+@EntityListeners(value = [FruitDateListener::class])
 class Fruit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,4 +19,17 @@ class Fruit {
 
     @LastModifiedDate
     var updatedAt: Date? = null
+}
+
+class FruitDateListener {
+    @PrePersist
+    fun setCreatedAt(fruit: Fruit) {
+        fruit.createdAt = Date()
+        fruit.updatedAt = Date()
+    }
+
+    @PreUpdate
+    fun setUpdatedAt(fruit: Fruit) {
+        fruit.updatedAt = Date()
+    }
 }
